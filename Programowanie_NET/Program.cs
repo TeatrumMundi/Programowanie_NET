@@ -1,19 +1,34 @@
-﻿namespace Programowanie_NET
+﻿using System;
+using System.IO;
+
+internal static class Program
 {
-    internal static class Program
+    static void Main()
     {
-        public static void Main(string[] args)
+        string filePath = "test.txt";
+
+        // Sprawdzenie, czy plik istnieje
+        if (!File.Exists(filePath))
         {
-            Samochod s1 = new Samochod("Fiat", "126p", 2, 650, 6.0);
-            Samochod s2 = new Samochod("Syrena", "105", 2, 800, 7.6);
-            
-            Garaz g1 = new Garaz("ul. Garażowa 1", 1);
+            Console.WriteLine("Plik nie istnieje.");
+            return;
+        }
 
-            g1.WprowadzSamochod(s1);
-            g1.WyprowadzSamochod();
-            g1.WprowadzSamochod(s2);
+        // Użycie FileStream do otwarcia pliku
+        using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        {
+            // Użycie StreamReader do odczytu zawartości pliku
+            using (StreamReader reader = new StreamReader(fileStream))
+            {
+                string content;
 
-            g1.WypiszInfo();
+                // Odczytywanie zawartości pliku linia po linii
+                while ((content = reader.ReadLine()) != null)
+                {
+                    // Wyświetlanie każdej linii na konsoli
+                    Console.WriteLine(content);
+                }
+            }
         }
     }
 }
