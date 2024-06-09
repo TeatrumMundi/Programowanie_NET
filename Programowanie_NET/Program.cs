@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Programowanie_NET
@@ -7,53 +8,92 @@ namespace Programowanie_NET
     {
         static void Main()
         {
-            // Ścieżki do plików
             string sourceFilePath = @"C:\Users\micha\OneDrive\Desktop\test.txt";
             string destinationFilePath = @"C:\Users\micha\OneDrive\Desktop\test1.txt";
 
-            try
+            // Generowanie pliku o wielkości 300 MB
+            GenerateLargeFile(sourceFilePath, 300 * 1024 * 1024);
+
+            // Testowanie kopiowania przy użyciu FileStream
+            TimeAction("FileStream copy", () =>
             {
-                // Otwieranie pliku źródłowego do odczytu
-                using (FileStream sourceStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
+                CopyFileUsingFileStream(sourceFilePath, destinationFilePath);
+            });
+
+            // Testowanie kopiowania przy użyciu File.Copy
+            TimeAction("File.Copy", () =>
+            {
+                File.Copy(sourceFilePath, destinationFilePath, true);
+            });
+
+            // Testowanie kopiowania przy użyciu BufferedStream
+            TimeAction("BufferedStream copy", () =>
+            {
+                CopyFileUsingBufferedStream(sourceFilePath, destinationFilePath);
+            });
+        }
+
+        static void GenerateLargeFile(string filePath, long size)
+        {
+            byte[] data = new byte[1024 * 1024]; // 1 MB buffer
+            Random rng = new Random();
+            rng.NextBytes(data);
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+            {
+                for (long i = 0; i < size; i += data.Length)
                 {
-                    // Sprawdzamy, czy plik źródłowy jest pusty
-                    if (sourceStream.Length == 0)
-                    {
-                        Console.WriteLine("Plik źródłowy jest pusty.");
-                        return;
-                    }
+                    fs.Write(data, 0, data.Length);
+                }
+            }
 
-                    // Otwieranie pliku docelowego do zapisu
-                    using (FileStream destinationStream = new FileStream(destinationFilePath, FileMode.Create, FileAccess.Write))
-                    {
-                        // Bufor do przechowywania danych
-                        byte[] buffer = new byte[4096];
-                        int bytesRead;
+            Console.WriteLine("Plik o wielkości 300 MB został wygenerowany.");
+        }
 
-                        // Odczytywanie danych z pliku źródłowego i zapisywanie do pliku docelowego
-                        while ((bytesRead = sourceStream.Read(buffer, 0, buffer.Length)) > 0)
-                        {
-                            Console.WriteLine($"Odczytano {bytesRead} bajtów");
-                            destinationStream.Write(buffer, 0, bytesRead);
-                            Console.WriteLine("Zapisano dane do pliku docelowego");
-                        }
-                    }
+        static void TimeAction(string description, Action action)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            action();
+            stopwatch.Stop();
+            Console.WriteLine($"{description}: {stopwatch.Elapsed.TotalSeconds} sekund");
+        }
 
-                    // Sprawdzenie, czy plik docelowy został zapisany
-                    if (File.Exists(destinationFilePath))
+        static void CopyFileUsingFileStream(string sourceFilePath, string destinationFilePath)
+        {
+            using (FileStream sourceStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
+            {
+                using (FileStream destinationStream = new FileStream(destinationFilePath, FileMode.Create, FileAccess.Write))
+                {
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = sourceStream.Read(buffer, 0, buffer.Length)) > 0)
                     {
-                        Console.WriteLine("Plik został zapisany pomyślnie.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Plik nie został zapisany.");
+                        destinationStream.Write(buffer, 0, bytesRead);
                     }
                 }
             }
-            catch (Exception e)
+        }
+
+        static void CopyFileUsingBufferedStream(string sourceFilePath, string destinationFilePath)
+        {
+            using (FileStream sourceStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
             {
-                Console.WriteLine("Wystąpił błąd podczas kopiowania pliku:");
-                Console.WriteLine(e.Message);
+                using (BufferedStream bufferedSourceStream = new BufferedStream(sourceStream))
+                {
+                    using (FileStream destinationStream = new FileStream(destinationFilePath, FileMode.Create, FileAccess.Write))
+                    {
+                        using (BufferedStream bufferedDestinationStream = new BufferedStream(destinationStream))
+                        {
+                            byte[] buffer = new byte[4096];
+                            int bytesRead;
+                            while ((bytesRead = bufferedSourceStream.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                bufferedDestinationStream.Write(buffer, 0, bytesRead);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
