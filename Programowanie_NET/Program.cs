@@ -1,34 +1,42 @@
 ﻿using System;
 using System.IO;
 
-internal static class Program
+namespace Programowanie_NET
 {
-    static void Main()
+    static class Program
     {
-        string filePath = "test.txt";
-
-        // Sprawdzenie, czy plik istnieje
-        if (!File.Exists(filePath))
+        static void Main(string[] args)
         {
-            Console.WriteLine("Plik nie istnieje.");
-            return;
-        }
+            // Ścieżka do pliku tekstowego
+            string filePath = "ścieżka/do/pliku.txt";
 
-        // Użycie FileStream do otwarcia pliku
-        using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-        {
-            // Użycie StreamReader do odczytu zawartości pliku
-            using (StreamReader reader = new StreamReader(fileStream))
+            try
             {
-                string content;
-
-                // Odczytywanie zawartości pliku linia po linii
-                while ((content = reader.ReadLine()) != null)
+                // Otwieranie pliku i wczytywanie linii
+                using (StreamReader sr = new StreamReader(filePath))
                 {
-                    // Wyświetlanie każdej linii na konsoli
-                    Console.WriteLine(content);
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        // Odwracanie linii
+                        string reversedLine = ReverseString(line);
+                        // Wyświetlanie odwróconej linii
+                        Console.WriteLine(reversedLine);
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Wystąpił błąd podczas wczytywania pliku:");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        static string ReverseString(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
     }
 }
