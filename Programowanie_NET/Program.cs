@@ -1,34 +1,90 @@
 ﻿using System;
 using System.IO;
 
-internal static class Program
+namespace Programowanie_NET
 {
-    static void Main()
+    [Serializable]
+    public class Person
     {
-        string filePath = "test.txt";
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Address { get; set; }
+    }
 
-        // Sprawdzenie, czy plik istnieje
-        if (!File.Exists(filePath))
+    class Program
+    {
+        static void Main(string[] args)
         {
-            Console.WriteLine("Plik nie istnieje.");
-            return;
+            Console.WriteLine("Wybierz opcję:");
+            Console.WriteLine("1. Zapisz dane do pliku binarnego");
+            Console.WriteLine("2. Odczytaj dane z pliku binarnego");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    SaveData();
+                    break;
+                case "2":
+                    LoadData();
+                    break;
+                default:
+                    Console.WriteLine("Niepoprawny wybór");
+                    break;
+            }
         }
 
-        // Użycie FileStream do otwarcia pliku
-        using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        static void SaveData()
         {
-            // Użycie StreamReader do odczytu zawartości pliku
-            using (StreamReader reader = new StreamReader(fileStream))
-            {
-                string content;
+            Person person = new Person();
 
-                // Odczytywanie zawartości pliku linia po linii
-                while ((content = reader.ReadLine()) != null)
+            Console.Write("Podaj imię: ");
+            person.Name = Console.ReadLine();
+
+            Console.Write("Podaj wiek: ");
+            person.Age = int.Parse(Console.ReadLine());
+
+            Console.Write("Podaj adres: ");
+            person.Address = Console.ReadLine();
+
+            using (FileStream fs = new FileStream("person.dat", FileMode.Create))
+            {
+                using (BinaryWriter writer = new BinaryWriter(fs))
                 {
-                    // Wyświetlanie każdej linii na konsoli
-                    Console.WriteLine(content);
+                    writer.Write(person.Name);
+                    writer.Write(person.Age);
+                    writer.Write(person.Address);
                 }
             }
+
+            Console.WriteLine("Dane zostały zapisane do pliku.");
+        }
+
+        static void LoadData()
+        {
+            if (!File.Exists("person.dat"))
+            {
+                Console.WriteLine("Plik nie istnieje.");
+                return;
+            }
+
+            Person person = new Person();
+
+            using (FileStream fs = new FileStream("person.dat", FileMode.Open))
+            {
+                using (BinaryReader reader = new BinaryReader(fs))
+                {
+                    person.Name = reader.ReadString();
+                    person.Age = reader.ReadInt32();
+                    person.Address = reader.ReadString();
+                }
+            }
+
+            Console.WriteLine("Odczytane dane:");
+            Console.WriteLine($"Imię: {person.Name}");
+            Console.WriteLine($"Wiek: {person.Age}");
+            Console.WriteLine($"Adres: {person.Address}");
         }
     }
 }
