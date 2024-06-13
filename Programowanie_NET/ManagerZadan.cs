@@ -36,7 +36,7 @@ namespace Programowanie_NET
         {
             if (_listaZadan.Count == 0)
             {
-                Console.WriteLine("Lista zadań jest pusta.");
+                Console.WriteLine("Lista zadań jest pusta.\n");
             }
             else
             {
@@ -50,21 +50,39 @@ namespace Programowanie_NET
         }
         public void ZapiszDoPliku(string sciezka)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Zadanie>));
-            using (StreamWriter writer = new StreamWriter(sciezka))
+            try
             {
-                serializer.Serialize(writer, _listaZadan);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Zadanie>));
+                using (StreamWriter writer = new StreamWriter(sciezka))
+                {
+                    serializer.Serialize(writer, _listaZadan);
+                }
+                Console.WriteLine("Lista zadań została zapisana do pliku.");
             }
-            Console.WriteLine("Lista zadań została zapisana do pliku.");
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Błąd podczas zapisywania pliku: {ex.Message}");
+            }
         }
         public void WczytajZPliku(string sciezka)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Zadanie>));
-            using (StreamReader reader = new StreamReader(sciezka))
+            try
             {
-                _listaZadan = (List<Zadanie>)serializer.Deserialize(reader);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Zadanie>));
+                using (StreamReader reader = new StreamReader(sciezka))
+                {
+                    _listaZadan = (List<Zadanie>)serializer.Deserialize(reader);
+                }
+                Console.WriteLine("Lista zadań została wczytana z pliku.");
             }
-            Console.WriteLine("Lista zadań została wczytana z pliku.");
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Plik nie został znaleziony. Rozpoczęto z pustą listą zadań.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Błąd podczas wczytywania pliku: {ex.Message}");
+            }
         }
     }
 }
