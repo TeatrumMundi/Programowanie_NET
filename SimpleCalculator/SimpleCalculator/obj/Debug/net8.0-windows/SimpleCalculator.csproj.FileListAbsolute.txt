@@ -1,0 +1,15 @@
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\bin\Debug\net8.0-windows\SimpleCalculator.exe
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\bin\Debug\net8.0-windows\SimpleCalculator.deps.json
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\bin\Debug\net8.0-windows\SimpleCalculator.runtimeconfig.json
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\bin\Debug\net8.0-windows\SimpleCalculator.dll
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\bin\Debug\net8.0-windows\SimpleCalculator.pdb
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\SimpleCalculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\SimpleCalculator.AssemblyInfoInputs.cache
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\SimpleCalculator.AssemblyInfo.cs
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\SimpleCalculator.csproj.CoreCompileInputs.cache
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\SimpleCalculator.sourcelink.json
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\SimpleCalculator.dll
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\refint\SimpleCalculator.dll
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\SimpleCalculator.pdb
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\SimpleCalculator.genruntimeconfig.cache
+C:\Users\micha\OneDrive\Desktop\Repositories\Programowanie_NET\SimpleCalculator\SimpleCalculator\obj\Debug\net8.0-windows\ref\SimpleCalculator.dll
