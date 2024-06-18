@@ -1,19 +1,62 @@
-﻿namespace Programowanie_NET
+﻿using System;
+using System.IO;
+using System.Security.Cryptography;
+
+namespace Programowanie_NET
 {
-    internal static class Program
+    static class RsaCrypto
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
-            Samochod s1 = new Samochod("Fiat", "126p", 2, 650, 6.0);
-            Samochod s2 = new Samochod("Syrena", "105", 2, 800, 7.6);
-            
-            Garaz g1 = new Garaz("ul. Garażowa 1", 1);
+            string publicKey;
+            string privateKey;
 
-            g1.WprowadzSamochod(s1);
-            g1.WyprowadzSamochod();
-            g1.WprowadzSamochod(s2);
+            // Generate RSA keys
+            using (var rsa = new RSACryptoServiceProvider(2048))
+            {
+                publicKey = rsa.ToXmlString(false); // tylko klucz publiczny
+                privateKey = rsa.ToXmlString(true); // klucz publiczny + prywatny
+            }
 
-            g1.WypiszInfo();
+            string filePath = "file.txt";
+            string encryptedFilePath = "encryptedFile.txt";
+            string decryptedFilePath = "decryptedFile.txt";
+
+            // Szyfrowanie pliku
+            EncryptFile(filePath, encryptedFilePath, publicKey);
+
+            // Deszyfrowanie pliku
+            DecryptFile(encryptedFilePath, decryptedFilePath, privateKey);
+
+            Console.WriteLine("Plik został zaszyfrowany i odszyfrowany.");
+        }
+
+        private static void EncryptFile(string inputFilePath, string outputFilePath, string publicKey)
+        {
+            byte[] dataToEncrypt = File.ReadAllBytes(inputFilePath);
+            byte[] encryptedData;
+
+            using (var rsa = new RSACryptoServiceProvider())
+            {
+                rsa.FromXmlString(publicKey);
+                encryptedData = rsa.Encrypt(dataToEncrypt, false);
+            }
+
+            File.WriteAllBytes(outputFilePath, encryptedData);
+        }
+
+        private static void DecryptFile(string inputFilePath, string outputFilePath, string privateKey)
+        {
+            byte[] dataToDecrypt = File.ReadAllBytes(inputFilePath);
+            byte[] decryptedData;
+
+            using (var rsa = new RSACryptoServiceProvider())
+            {
+                rsa.FromXmlString(privateKey);
+                decryptedData = rsa.Decrypt(dataToDecrypt, false);
+            }
+
+            File.WriteAllBytes(outputFilePath, decryptedData);
         }
     }
 }
