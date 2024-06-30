@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "dx6hC6QQmqFBQ4d0SMoAZZHgFmpeW5IdXf5y3Yf4tTVp4v2Ge4/1BtpTeaIR8MpvH1llrFZJtMwGmZDwGzxR2w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\micha\\OneDrive\\Desktop\\Repositories\\Programowanie_NET\\LAB4-ZADANIE-ZALICZENIOWE\\LAB4-ZADANIE-ZALICZENIOWE\\LAB4-ZADANIE-ZALICZENIOWE.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\micha\\.nuget\\packages\\system.configuration.configurationmanager\\9.0.0-preview.5.24306.7\\system.configuration.configurationmanager.9.0.0-preview.5.24306.7.nupkg.sha512",
+    "C:\\Users\\micha\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.0-preview.5.24306.7\\system.diagnostics.eventlog.9.0.0-preview.5.24306.7.nupkg.sha512",
+    "C:\\Users\\micha\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.0-preview.5.24306.7\\system.security.cryptography.protecteddata.9.0.0-preview.5.24306.7.nupkg.sha512"
+  ],
+  "logs": []
+}

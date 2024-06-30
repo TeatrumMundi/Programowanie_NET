@@ -1,0 +1,89 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "LAB4-ZADANIE-ZALICZENIOWE/1.0.0": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "9.0.0-preview.5.24306.7"
+        },
+        "runtime": {
+          "LAB4-ZADANIE-ZALICZENIOWE.dll": {}
+        }
+      },
+      "System.Configuration.ConfigurationManager/9.0.0-preview.5.24306.7": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "9.0.0-preview.5.24306.7",
+          "System.Security.Cryptography.ProtectedData": "9.0.0-preview.5.24306.7"
+        },
+        "runtime": {
+          "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.30607"
+          }
+        }
+      },
+      "System.Diagnostics.EventLog/9.0.0-preview.5.24306.7": {
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.30607"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.Messages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.30607"
+          }
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/9.0.0-preview.5.24306.7": {
+        "runtime": {
+          "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.30607"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LAB4-ZADANIE-ZALICZENIOWE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Configuration.ConfigurationManager/9.0.0-preview.5.24306.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QKQG0VG4TpGW7i5UvlaHA/9HG/EqwmVa9OokXv54wONWnbm2blYieExHwMTF9252pEtjPtV44qHFqQAUeZcRtg==",
+      "path": "system.configuration.configurationmanager/9.0.0-preview.5.24306.7",
+      "hashPath": "system.configuration.configurationmanager.9.0.0-preview.5.24306.7.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/9.0.0-preview.5.24306.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C0PXRc7K0B55FWbdlGyYpz7DoJnW5KFM8qYIBmEjdah8O5B0Qw1by3EjSxp0ol0pPuhpUIPQQCUukxwfBJhNrg==",
+      "path": "system.diagnostics.eventlog/9.0.0-preview.5.24306.7",
+      "hashPath": "system.diagnostics.eventlog.9.0.0-preview.5.24306.7.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/9.0.0-preview.5.24306.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RwBW44vWNkfVLfouwWwcN/emQm5gI9bcNtZzURf2tSc1SAAVh4lMGcz/Qo4+bQHSrHtoGKX6ujd9PwUrOds5eg==",
+      "path": "system.security.cryptography.protecteddata/9.0.0-preview.5.24306.7",
+      "hashPath": "system.security.cryptography.protecteddata.9.0.0-preview.5.24306.7.nupkg.sha512"
+    }
+  }
+}
